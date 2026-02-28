@@ -1,0 +1,11 @@
+.import/
+*.import
+export_presets.cfg
+*.pck
+*.exe
+*.dmg
+*.app
+.idea/
+.vscode/
+*.user
+*.log
