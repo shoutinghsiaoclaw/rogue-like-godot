@@ -1,37 +1,27 @@
 extends CanvasLayer
 
-var hp_label: Label
-var floor_label: Label
-
 func _ready():
 	# HP Display
-	hp_label = Label.new()
-	hp_label.name = "HPLabel"
+	var hp_label = Label.new()
+	hp_label.name = "HP"
 	hp_label.text = "HP: 100/100"
-	hp_label.position = Vector2(10, 10)
-	hp_label.add_theme_font_size_override("font_size", 24)
+	hp_label.position = Vector2(20, 20)
+	hp_label.add_theme_font_size_override("font_size", 28)
 	add_child(hp_label)
 	
 	# Floor Display
-	floor_label = Label.new()
-	floor_label.name = "FloorLabel"
+	var floor_label = Label.new()
+	floor_label.name = "Floor"
 	floor_label.text = "Floor: 1/5"
-	floor_label.position = Vector2(10, 40)
-	floor_label.add_theme_font_size_override("font_size", 24)
+	floor_label.position = Vector2(20, 55)
+	floor_label.add_theme_font_size_override("font_size", 28)
 	add_child(floor_label)
-
-func _process(delta):
-	var game = get_tree().get_first_node_in_group("player")
-	if game:
-		hp_label.text = "HP: " + str(game.hp) + "/" + str(game.max_hp)
-		if game.hp <= 30:
-			hp_label.modulate = Color.RED
-		elif game.hp <= 60:
-			hp_label.modulate = Color.YELLOW
-		else:
-			hp_label.modulate = Color.GREEN
-		
-		# Get floor from game manager
-		var gm = get_tree().get_first_node_in_group("player").get_parent()
-		if gm.has_method("_next_floor"):
-			floor_label.text = "Floor: " + str(gm.current_floor) + "/" + str(gm.max_floors)
+	
+	# Instructions
+	var instructions = Label.new()
+	instructions.name = "Instructions"
+	instructions.text = "WASD: Move | SPACE: Attack"
+	instructions.position = Vector2(20, 90)
+	instructions.add_theme_font_size_override("font_size", 18)
+	instructions.modulate = Color(0.7, 0.7, 0.7)
+	add_child(instructions)
